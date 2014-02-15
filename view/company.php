@@ -3,6 +3,11 @@ if (!isset($company)) {
     $company = new Company(array());
 }
 
+if (!isset($people)) {
+    $people = new People(array());
+}
+
+
 $tabKw = explode(',', $company->getkeyword());
 ?>
 
@@ -80,7 +85,6 @@ $tabKw = explode(',', $company->getkeyword());
             setlocale(LC_ALL, 'french', 'fr_FR', 'fr_FR.ISO8859-1');
             $date = strftime("%d %B %Y", strtotime($company->getAdd_date()));
             ?>
-
             <?php if ($_GET['page'] == "company/show" && isset($_GET['id'])) : ?>
                 <div class="pull-left"><h6>ID : <strong><?php echo $_GET['id']; ?></strong> - Ajoutée le <?php echo $date; ?></h6></div>
                 <div class="btn-group-lg visible-xs pull-right">
@@ -244,7 +248,7 @@ $tabKw = explode(',', $company->getkeyword());
                             </div>
                         </div>
 
-                        <div class="form-group">      
+                        <div class="form-group">
 
                             <label for="coManager" class="col-md-10">Directeur :</label>
 
@@ -253,7 +257,7 @@ $tabKw = explode(',', $company->getkeyword());
                                 <input type="text" class="form-control" name="coManager"
                                        data-content="Le directeur doit figurer dans la base de donnée, dans le cas contraire, une fenêtre s'ouvrira pour pouvoir l'ajouter."
                                        data-original-title="A savoir">
-                            </div> 
+                            </div>
                         </div>
 
 
@@ -314,7 +318,7 @@ $tabKw = explode(',', $company->getkeyword());
                             <div class="form-group col-md-5">
                                 <label for="roCp" class="col-md-12">CP :</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control" id="roCp" name="roCp" value="<?php echo $company->getZip_ro(); ?>"> 
+                                    <input type="text" class="form-control" id="roCp" name="roCp" value="<?php echo $company->getZip_ro(); ?>">
                                 </div>
                             </div>
                             <div class="form-group col-md-6">
@@ -381,36 +385,36 @@ $tabKw = explode(',', $company->getkeyword());
         <script src="view/dist/js/offcanvas.js"></script>
         <script src="view/includes/js/autocomplete.js"></script>
         <script>
-                                        function hidekw(idkw) {
-                                            $('#kw' + idkw).hide();
-                                            $("input[name=kw" + idkw + "]").val('');
-                                            for (var i = parseInt(idkw) + 1; i <= (nKw); i++) {
-                                                $("#inputkw" + i).attr("name", "kw" + (i - 1));
+                                            function hidekw(idkw) {
+                                                $('#kw' + idkw).hide();
+                                                $("input[name=kw" + idkw + "]").val('');
+                                                for (var i = parseInt(idkw) + 1; i <= (nKw); i++) {
+                                                    $("#inputkw" + i).attr("name", "kw" + (i - 1));
+                                                }
+                                                nKw--;
+                                                $("#addKw").show();
                                             }
-                                            nKw--;
-                                            $("#addKw").show();
-                                        }
 
-                                        $(function() {
-                                            $("input[name=coManager]").popover({placement: 'right', trigger: 'focus', container: 'body'});
-                                            $("#addKw").popover({placement: 'right', trigger: 'hover', container: 'body'});
-                                        });
+                                            $(function() {
+                                                $("input[name=coManager]").popover({placement: 'right', trigger: 'focus', container: 'body'});
+                                                $("#addKw").popover({placement: 'right', trigger: 'hover', container: 'body'});
+                                            });
 
-                                        nKw = $("#countKw").val();
-                                        $("#addKw").click(function() {
-                                            nKw++;
-                                            $("#keyword").append('<div class="form-group" id="kw' + nKw + '">'
-                                                    + '<div class="col-xs-11">'
-                                                    + '<input type="text" class="form-control" id="inputkw' + nKw + '" name="kw' + nKw + '" placeholder="Mot-clef">'
-                                                    + '</div>'
-                                                    + '<button type="button" class="close delkw" name="del' + nKw + '" id="' + nKw + '" onclick= hidekw("' + nKw + '")>&times;</button>'
-                                                    + '</div>');
+                                            nKw = $("#countKw").val();
+                                            $("#addKw").click(function() {
+                                                nKw++;
+                                                $("#keyword").append('<div class="form-group" id="kw' + nKw + '">'
+                                                        + '<div class="col-xs-11">'
+                                                        + '<input type="text" class="form-control" id="inputkw' + nKw + '" name="kw' + nKw + '" placeholder="Mot-clef">'
+                                                        + '</div>'
+                                                        + '<button type="button" class="close delkw" name="del' + nKw + '" id="' + nKw + '" onclick= hidekw("' + nKw + '")>&times;</button>'
+                                                        + '</div>');
+                                                if (nKw > 9)
+                                                    $("#addKw").hide();
+                                            });
+
                                             if (nKw > 9)
                                                 $("#addKw").hide();
-                                        });
-
-                                        if (nKw > 9)
-                                            $("#addKw").hide();
 
 
         </script>

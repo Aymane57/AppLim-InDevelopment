@@ -4,6 +4,10 @@ require_once 'dao/daoCompany.php';
 
 class companyController {
 
+    static function index() {
+        companyController::all();
+    }
+
     static function add() {
         for ($i = 0; $i < 100; $i++) {
             if (isset($_GET['validate']) && $_GET['validate'] === '1') {

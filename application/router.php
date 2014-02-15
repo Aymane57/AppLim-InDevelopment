@@ -18,15 +18,14 @@ class router {
     private function getController() {
 
         $route = (empty($_GET['page'])) ? die('Erreur, le controlleur n\'est pas spécifié') : $_GET['page'];
-		
+
         $parts = explode('/', $route);
 
         $this->controller = !empty($parts[0]) ? $parts[0] : die('Erreur, le controlleur n\'est pas spécifié');
 
-        $this->action = !empty($parts[1]) ? $parts[1] :  die('Erreur, la méthode n\'est pas spécifié');
+        $this->action = !empty($parts[1]) ? $parts[1] : 'index';
 
         $this->file = $this->path . '/' . $this->controller . 'Controller.php';
-
     }
 
     public function loader() {

@@ -11,9 +11,9 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#"><strong>Entreprises</strong></a></li>
-                <li><a href="#about"><strong>Personnes</strong></a></li>
-                <li><a href="#contact"><strong>Dossiers</strong></a></li>
+                <li class="active"><a href="?page=company"><strong>Entreprises</strong></a></li>
+                <li><a href="?page=people"><strong>Personnes</strong></a></li>
+                <li><a href="?page=intervention"><strong>Dossiers</strong></a></li>
             </ul>
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->

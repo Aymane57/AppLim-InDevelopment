@@ -6,13 +6,26 @@ class DaoPeople {
         $db = connect::getInstance();
         $query = $db->prepare("SELECT * FROM people");
         $query->execute();
-        $companies = NULL;
+        $peopleList = NULL;
         foreach ($query->fetchAll(PDO::FETCH_ASSOC) as $key => $value) {
-            $companies[$key] = new People($value);
+            $peopleList[$key] = new People($value);
         }
         $query->closeCursor();
         $db = NULL;
-        return $companies;
+        return $peopleList;
+    }
+
+    static function getListCompany($id_company, $id_people) {
+        $db = connect::getInstance();
+        $query = $db->prepare("SELECT * FROM associate, company, people WHERE id_company = id_people");
+        $query->bindValue(':id_company', $id_company);
+        $query->bindValue(':id_people', $id_people);
+
+        $query->execute();
+        $peopleList = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query->closeCursor();
+        $db = NULL;
+        return $peopleList;
     }
 
     static function getById($id) {

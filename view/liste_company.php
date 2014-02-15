@@ -41,6 +41,12 @@ $end = $current + 2 >= $totalPages ? $totalPages - 1 : $current + 2;
         <?php include_once 'view/includes/header.php'; ?>
 
         <div class="container">
+            <a href="?page=company/add">
+                <button type="button" class="btn btn-primary btn-lg pull-left">
+                    <span class="glyphicon glyphicon-plus-sign"></span>
+                    Nouvelle
+                </button>
+            </a>
             <?php if (empty($companies)) : ?>
                 <?php echo 'Vide'; ?>
             <?php else : ?>
@@ -83,7 +89,7 @@ $end = $current + 2 >= $totalPages ? $totalPages - 1 : $current + 2;
                                 <td><?php echo $company->getZip(); ?> - <?php echo $company->getCity(); ?></td>
                                 <td><?php echo $company->getCountry(); ?></td>
                                 <td><?php echo $date_add ?></td>
-                                <td><?php echo $company->getId(); ?></td>
+                                <td><a href="?page=company/show&id=<?php echo $company->getId(); ?>"><span class="glyphicon glyphicon-edit"></span></a> <span class="glyphicon glyphicon-trash"></span></td>
                             </tr>
                         <?php endforeach; ?>
                     </table>
